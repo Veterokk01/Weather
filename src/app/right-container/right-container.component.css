@@ -11,17 +11,118 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-size: small;
+    font-weight: bold;
 }
 
 .nav-bar-tabs {
     display: flex;
     flex-direction: row;
     margin-left: 30px;
+    margin-top: 20px;
+    
+}
+
+.today {
+    margin-right: 10px;
+    color: #cecece;
+}
+
+.week {
+    color: #cecece;
+}
+
+.today:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+.week:hover {
+    color: #000000;
+    cursor: pointer;
+}
+
+.today-active {
+    color: #000000;
+}
+
+.week-active {
+    color: #000000;
+}
+
+.celsius {
+    border-radius: 500px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: black;
+    background-color: white;
+}
+
+.farenheit {
+     border-radius: 500px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    color: black;
+    background-color: white;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.celsius:hover {
+    color: white;
+    background-color: black;
+}
+
+.farenheit:hover {
+    color: white;
+    background-color: black;
+}
+
+.celsius-active {
+    color: white;
+    background-color: black;
+}
+
+.farenheit-active {
+    color: white;
+    background-color: black;
+}
+
+.profile-image img {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.underline {
+    width: 40px;
+    height: 1px;
+    background-color: black;
+    margin-top: 1.2em;
+}
+
+.underline-today {
+    transform: translate3d(-211%, 0, 0);
+    transition: 100ms;
+}
+
+.underline-week {
+    transform: translate3d(-92%, 0, 0);
+    transition: 100ms;
 }
 
 .nav-bar-metric {
     display: flex;
     flex-direction: row;
+    margin-right: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 .right-container-data-box {

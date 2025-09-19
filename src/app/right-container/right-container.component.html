@@ -1,13 +1,15 @@
 <div class="right-container">
     <div class="right-container-nav-bar">
         <div class="nav-bar-tabs">
-            <div class="today">Сегодня</div>
-            <div class="week">Week</div>
+            <div class="today" (click)="onTodayClick()" [className]="today == true ? 'today today-active' : 'today' ">Today</div>
+            <div class="week" (click)="onWeekClick()" [className]="week== true ? 'week week-active' : 'week' ">Week</div>
+            <div class="underline" [className]="today == true ? 'underline underline-today' : 'underline underline-week' "></div>
         </div>
 
         <div class="nav-bar-metric">
             <div class="celsius">°C</div>
             <div class="farenheit">°F</div>
+            <div class="profile-image"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135768.png" alt=""></div>
         </div>
     </div>
 
