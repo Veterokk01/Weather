@@ -7,8 +7,8 @@
         </div>
 
         <div class="nav-bar-metric">
-            <div class="celsius">°C</div>
-            <div class="farenheit">°F</div>
+            <div class="celsius" (click)="onCelsiusClick()" [className]="celsius == true ? 'celsius celsius-active' : 'celsius' ">°C</div>
+            <div class="farenheit" (click)="onFarenheitClick()" [className]="farenheit == true ? 'farenheit farenheit-active' : 'farenheit' ">°F</div>
             <div class="profile-image"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135768.png" alt=""></div>
         </div>
     </div>

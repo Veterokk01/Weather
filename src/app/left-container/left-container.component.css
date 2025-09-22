@@ -1,0 +1,124 @@
+.left-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container-nav-bar {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-icon {
+    flex: 2;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.search-input {
+    flex: 4;
+}
+
+.search-input input {
+    border: none;
+    padding: 6px;
+    font-size: 11px;
+    color: black;
+}
+
+.location-icon {
+    flex: 2;
+    text-align: center;
+    margin-right: 10px;
+}
+
+.location-icon fa-icon {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: #f6f6f8;
+    border-radius: 500px;
+}
+
+.left-container-data-box {
+    flex: 12;
+    display: flex;
+    margin-right: 30px;
+    margin-left: 30px;
+    flex-direction: column;
+}
+
+.left-container-temp-data {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.left-container-temp-img {
+    flex: 2;
+}
+
+.left-container-temp-img img {
+    width: 160px;
+    height: 160px;
+}
+
+.left-container-temp-value {
+    flex: 1;
+    font-size: 62px;
+    font-weight: normal;
+}
+
+.left-container-temp-value sup {
+    position: relative;
+    top: 3px;
+    font-size: 36px;
+    
+}
+
+.left-container-day-time {
+    flex: 1;
+}
+
+.left-container-other-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-container-temp-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container-rain-stats {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container-location-details {
+    flex: 3;
+    text-align: center;
+}
+
+.left-container-locaiton-img img{
+    width: 200px;
+    height: 80px;
+    border-radius: 20px;
+    filter: brightness(30%);
+}
+
+.left-container-location-name {
+    margin-top: -50px;
+    font-size: medium;
+    font-weight: bold;
+    color: white;
+}
