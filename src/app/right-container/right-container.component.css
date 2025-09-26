@@ -172,18 +172,20 @@
 
 .right-container-todays-highlight {
     flex: 3;
+    display: flex;
+    flex-direction: column;
 }
 
 .right-container-todays-highlight-title {
     flex: 2;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-size: medium;
     font-weight: bold;
 }
 
 .right-container-todays-highlight-cards {
-    flex: 8;
+    flex: 10;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -195,20 +197,43 @@
     flex-direction: column;
     background-color: white;
     border-radius: 10px;
-    width: 150px;
-    height: 120px;
+    width: 200px;
+    height: 145px;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-left: 10px;
+}
+
+.right-container-todays-highlight-card-title {
+    flex: 1;
+    color: #c5c5c5;
+    font-size: small;
+    font-weight: bold;
+    margin: 10px;
+    margin-left: 20px;
+    align-self: self-start;
+}
+
+.right-container-todays-highlight-value {
+    flex: 1;
+    
+    font-size: xx-large;
+    font-weight: 500;
+    z-index: 1;
+
+
 }
 
 .gauge {
     flex: 2;
-    width: 50%;
+    width: 70%;
     height: 180px;
     font-size: 32px;
     color: black;
     font-weight: 500;
+    margin-bottom: -40px;
+    margin-top: -30px;
 }
 
 .gauge_body {
@@ -251,5 +276,83 @@
     padding-bottom: 25%;
     box-sizing: border-box;
     color: white;
+    
 
 }
+
+.wind-status-value {
+    flex: 2;
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: -10px;
+
+}
+
+.wind-status-logo {
+    flex: 1;
+    align-self: self-start;
+    margin-left: 30px;
+}
+
+.wind-status-logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.unit {
+    font-size: 16px;
+}
+
+.sunrise-sunset-value {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+}
+
+.sunrise {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.sunrise-img {
+    flex: 1;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.sunrise-img img {
+    width: 40px;
+    height: 40px;
+}
+
+.sunrise-time {
+    flex: 4;
+    font-weight: 500;
+}
+
+.sunset {    
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.sunset-img {
+    flex: 1;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.sunset-img img {
+    width: 40px;
+    height: 40px;
+}
+
+.sunset-time {
+    flex: 4;
+    font-weight: 500;
+}
+
+
