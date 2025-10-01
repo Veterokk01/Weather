@@ -1,8 +1,8 @@
-export interface TemperatureData {
+export class TemperatureData {
     temperature: number;
     summaryImage:string;
     day: string;
-    type: string;
+    time: string;
     SummaryPhrase: string;
     rainPercent: number;
     location: string;
