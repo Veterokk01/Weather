@@ -1,105 +1,32 @@
 <div class="right-container">
     <div class="right-container-nav-bar">
         <div class="nav-bar-tabs">
-            <div class="today" (click)="onTodayClick()" [className]="today == true ? 'today today-active' : 'today' ">Today</div>
-            <div class="week" (click)="onWeekClick()" [className]="week== true ? 'week week-active' : 'week' ">Week</div>
-            <div class="underline" [className]="today == true ? 'underline underline-today' : 'underline underline-week' "></div>
+            <div class="today" (click)="onTodayClick()" [className]="this.weatherService.today == true ? 'today today-active' : 'today' ">Today</div>
+            <div class="week" (click)="onWeekClick()" [className]="this.weatherService.week== true ? 'week week-active' : 'week' ">Week</div>
+            <div class="underline" [className]="this.weatherService.today == true ? 'underline underline-today' : 'underline underline-week' "></div>
         </div>
 
         <div class="nav-bar-metric">
-            <div class="celsius" (click)="onCelsiusClick()" [className]="celsius == true ? 'celsius celsius-active' : 'celsius' ">°C</div>
-            <div class="farenheit" (click)="onFarenheitClick()" [className]="farenheit == true ? 'farenheit farenheit-active' : 'farenheit' ">°F</div>
+            <div class="celsius" (click)="onCelsiusClick()" [className]="this.weatherService.celsius == true ? 'celsius celsius-active' : 'celsius' ">°C</div>
+            <div class="farenheit" (click)="onFarenheitClick()" [className]="this.weatherService.farenheit == true ? 'farenheit farenheit-active' : 'farenheit' ">°F</div>
             <div class="profile-image"><img src="https://cdn-icons-png.flaticon.com/128/3135/3135768.png" alt=""></div>
         </div>
     </div>
 
     <div class="right-container-data-box">
-        <div class="right-container-week-cards" *ngIf="week == true">
-            <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
+        <div class="right-container-week-cards" *ngIf="this.weatherService.week == true">
+            <div class="card" *ngFor="let card of weatherService.weekData">
+                <div class="card-day">{{ card.day }}</div>
+                <div class="card-temp-img"><img src="{{ card.summeryImage }}" alt=""></div>
+                <div class="card-temp-value"> <span class="temp-max">{{ this.weatherService.celsius == true ? card.tempMax : this.weatherService.celsiusToFarenheit(card.tempMax) }}°</span> <span class="temp-min">{{ this.weatherService.celsius == true ? card.tempMin : this.weatherService.celsiusToFarenheit(card.tempMin) }}°</span> </div>
             </div>
 
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
 
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
-
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
-
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
-
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
-
-             <div class="card">
-                <div class="card-day">Sun</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max"> 20°</span> <span class="temp-min"> 13°</span> </div>
-            </div>
-        </div>
-
-
-        <div class="right-container-today-cards" *ngIf="today == true">
-            <div class="card">
-                <div class="card-day">00:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">04:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">08:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">12:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">16:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">19:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
-            </div>
-
-              <div class="card">
-                <div class="card-day">22:00</div>
-                <div class="card-temp-img"><img src="https://cdn-icons-png.flaticon.com/128/439/439842.png" alt=""></div>
-                <div class="card-temp-value"> 20° </div>
+        <div class="right-container-today-cards" *ngIf="this.weatherService.today == true">
+            <div class="card" *ngFor="let card of weatherService.todayData">
+                <div class="card-day">{{ card.time }}</div>
+                <div class="card-temp-img"><img src="{{ card.summaryImage }}" alt=""></div>
+                <div class="card-temp-value"> {{ this.weatherService.celsius == true ? card.temperature : this.weatherService.celsiusToFarenheit(card.temperature) }}° </div>
             </div>
         </div>
 
@@ -115,12 +42,12 @@
                             <div class="gauge_cover"></div>
                         </div>
                     </div>
-                    <div class="right-container-todays-highlight-value">5</div>
+                    <div class="right-container-todays-highlight-value">{{ this.weatherService.todayHightlights.uvindex }}</div>
                 </div>
 
                 <div class="right-container-todays-highlight-card">
                     <div class="right-container-todays-highlight-card-title">Wind Status</div>
-                    <div class="wind-status-value">7.73 <span class="unit">km/h</span></div>
+                    <div class="wind-status-value">{{ this.weatherService.todayHightlights.windStatus }} <span class="unit">km/h</span></div>
                     <div class="wind-status-logo"><img src="https://cdn-icons-png.flaticon.com/128/9829/9829471.png" alt=""></div>
                 </div>
 
@@ -129,12 +56,12 @@
                         <div class="sunrise-sunset-value">
                             <div class="sunrise">
                             <div class="sunrise-img"><img src="https://cdn-icons-png.flaticon.com/128/8098/8098355.png" alt=""></div>
-                            <div class="sunrise-time">6:35 AM</div>
+                            <div class="sunrise-time">{{ this.weatherService.todayHightlights.sunrise }} AM</div>
                         </div>
                         
                         <div class="sunset">
                             <div class="sunset-img"><img src="https://cdn-icons-png.flaticon.com/128/8098/8098358.png" alt=""></div>
-                            <div class="sunset-time">5:42 PM</div>
+                            <div class="sunset-time">{{ this.weatherService.todayHightlights.sunset }} PM</div>
                         </div>
                     </div>
                 </div>
@@ -144,17 +71,17 @@
             <div class="right-container-todays-highlight-cards">
                 <div class="right-container-todays-highlight-card">
                     <div class="right-container-todays-highlight-card-title">Humitidy</div>
-                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">2 <sup class="unit">%</sup></div>
+                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">{{ this.weatherService.todayHightlights.humidity }}<sup class="unit">%</sup></div>
                     <div class="humitidy-summary" style="align-self: self-start; margin-left: 20px;">Normal <fa-icon style="color: rgb(0, 87, 201);" [icon]="faThumbsUp"></fa-icon></div>
                 </div>
                 <div class="right-container-todays-highlight-card">
                    <div class="right-container-todays-highlight-card-title">Visibility</div>
-                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">2.1 <span class="unit">km</span></div>
+                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">{{ this.weatherService.todayHightlights.visibility }} <span class="unit">km</span></div>
                     <div class="humitidy-summary" style="align-self: self-start; margin-left: 20px;">Average <fa-icon style="color: rgb(0, 87, 201);" [icon]="faFaceFrown"></fa-icon></div>
                 </div>
                 <div class="right-container-todays-highlight-card">
                     <div class="right-container-todays-highlight-card-title">Air Quality</div>
-                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">105</div>
+                        <div class="wind-status-value" style="align-self: self-start; margin-left: 20px;">{{ this.weatherService.todayHightlights.airQuality }}</div>
                     <div class="humitidy-summary" style="align-self: self-start; margin-left: 20px;">Unhealthy <fa-icon style="color: rgb(0, 87, 201);" [icon]="faThumbsDown"></fa-icon></div>
                 </div>
             </div>

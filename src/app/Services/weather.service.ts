@@ -9,6 +9,7 @@ import { TodayHightlight } from '../Models/TodayHightlights';
 import { EnvironmentVariables } from '../Environment/EnvironmentVariables';
 import { Observable } from 'rxjs';
 import { response } from 'express';
+import { faR } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,14 @@ import { response } from 'express';
 export class WeatherService {
   cityName:string = "Moscow";
   language:string ="en-US";
-  date:string = '20251002';
+  date:string = '20251004';
   units:string = 'm';
+
+  today:boolean = false;
+  week:boolean = true;
+  
+  celsius:boolean = true;
+  farenheit:boolean = false;
 
   currentTime:Date = new Date()
 
@@ -25,11 +32,13 @@ export class WeatherService {
   weatherDetails?: WeatherDetails;
 
   temperatureData: TemperatureData;
-  todayData?: TodayData;
-  weekData?: WeekData;
-  todayHightlights?: TodayHightlight;
+
+  todayData?: TodayData[] = [];
+  weekData?: WeekData[] = [];
+  todayHightlights?: TodayHightlight = new TodayHightlight();
 
   constructor(private httpClient: HttpClient) {
+    this.temperatureData = new TemperatureData();
     this.getData();
   }  
 
@@ -50,7 +59,43 @@ export class WeatherService {
     return cloudySunny
   }
 
-  prepareData():void {
+  getTimeFromString(localTime: string) {
+    return localTime.slice(12, 17)
+  }
+
+  fillTodayHighlights() {
+    this.todayHightlights.airQuality = this.weatherDetails['v3-wx-globalAirQuality'].globalairquality.airQualityIndex;
+    this.todayHightlights.humidity = this.weatherDetails['v3-wx-observations-current'].precip24Hour;
+    this.todayHightlights.sunrise = this.getTimeFromString( this.weatherDetails['v3-wx-observations-current'].sunriseTimeLocal);
+    this.todayHightlights.sunset = this.getTimeFromString(this.weatherDetails['v3-wx-observations-current'].sunsetTimeLocal);
+    this.todayHightlights.uvindex = this.weatherDetails['v3-wx-observations-current'].uvIndex;
+    this.todayHightlights.visibility = this.weatherDetails['v3-wx-observations-current'].visibility;
+    this.todayHightlights.windStatus = this.weatherDetails['v3-wx-observations-current'].windSpeed;
+  }
+
+  fillTodayData() {
+    var todayCount = 0;
+    while(todayCount < 7) {
+      this.todayData.push(new TodayData());
+      this.todayData[todayCount].time = this.weatherDetails['v3-wx-forecast-hourly-10day'].validTimeLocal[todayCount].slice(11, 16);
+      this.todayData[todayCount].temperature = this.weatherDetails['v3-wx-forecast-hourly-10day'].temperature[todayCount];
+      this.weekData[todayCount].summeryImage = this.getSummaryImage(this.weatherDetails['v3-wx-forecast-hourly-10day'].wxPhraseShort[todayCount]);
+      todayCount++
+    }
+  }
+  fillWeekData() {
+    var weekCount = 0;
+    while(weekCount < 7) {
+      this.weekData.push(new WeekData());
+      this.weekData[weekCount].day = this.weatherDetails['v3-wx-forecast-daily-15day'].dayOfWeek[weekCount].slice(0, 3);
+      this.weekData[weekCount].tempMax = this.weatherDetails['v3-wx-forecast-daily-15day'].calendarDayTemperatureMax[weekCount];
+      this.weekData[weekCount].tempMin = this.weatherDetails['v3-wx-forecast-daily-15day'].calendarDayTemperatureMin[weekCount];
+      this.weekData[weekCount].summeryImage = this.getSummaryImage(this.weatherDetails['v3-wx-forecast-daily-15day'].narrative[weekCount]);
+      weekCount++
+    }
+  }
+
+  fillTemperatureDataModel() {
     this.currentTime = new Date();
     this.temperatureData.day = this.weatherDetails['v3-wx-observations-current'].dayOfWeek;
     this.temperatureData.time = `${String(this.currentTime.getHours()).padStart(2, '0')}:${String(this.currentTime.getMinutes()).padStart(2, '0')}`;
@@ -59,6 +104,21 @@ export class WeatherService {
     this.temperatureData.rainPercent = this.weatherDetails['v3-wx-observations-current'].precip24Hour;
     this.temperatureData.SummaryPhrase = this.weatherDetails['v3-wx-observations-current'].wxPhraseShort;
     this.temperatureData.summaryImage = this.getSummaryImage(this.temperatureData.SummaryPhrase);
+  }
+
+  prepareData():void {
+  this.fillTemperatureDataModel();
+  this.fillWeekData();
+  this.fillTodayData();
+  this.fillTodayHighlights();
+  }
+
+  celsiusToFarenheit(celsius: number) {
+    return (celsius * 1.8) + 32;
+  }
+
+  farenheitToCelsius(farenheit: number) {
+    return(farenheit - 32) * 0.555;
   }
 
   getLocationDetails(cityName: string, language:string):Observable<LocationDetails>{
@@ -112,6 +172,6 @@ export class WeatherService {
       }
     });
 
-    
+  
   }
 }

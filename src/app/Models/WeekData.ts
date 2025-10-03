@@ -1,6 +1,6 @@
-export interface WeekData {
+export class WeekData {
     day: string;
     summeryImage: string;
-    tempMax: string;
-    tempMin: string;
+    tempMax: number;
+    tempMin: number;
 }

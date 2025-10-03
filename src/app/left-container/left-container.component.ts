@@ -12,11 +12,17 @@ import { WeatherService } from '../Services/weather.service';
 })
 
 export class LeftContainerComponent {
+[x: string]: any;
   faMagnifyingGlass:any = faMagnifyingGlass;
   faLocationDot:any = faLocationDot;
 
   faCloud:any = faCloud;
   faCloudRain:any = faCloudRain;
 
-  constructor(weatherService:WeatherService) {}
+  constructor(public weatherService:WeatherService) {}
+
+  onSearch (location: string) {
+    this.weatherService.cityName = location;
+    this.weatherService.getData();
+  }
 }
