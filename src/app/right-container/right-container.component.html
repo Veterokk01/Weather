@@ -20,6 +20,7 @@
                 <div class="card-temp-img"><img src="{{ card.summeryImage }}" alt=""></div>
                 <div class="card-temp-value"> <span class="temp-max">{{ this.weatherService.celsius == true ? card.tempMax : this.weatherService.celsiusToFarenheit(card.tempMax) }}°</span> <span class="temp-min">{{ this.weatherService.celsius == true ? card.tempMin : this.weatherService.celsiusToFarenheit(card.tempMin) }}°</span> </div>
             </div>
+        </div>
 
 
         <div class="right-container-today-cards" *ngIf="this.weatherService.today == true">
