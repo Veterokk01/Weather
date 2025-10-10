@@ -8,7 +8,6 @@ import { WeatherService } from '../Services/weather.service';
   imports: [FaIconComponent],
   templateUrl: './left-container.component.html',
   styleUrl: './left-container.component.css',
-  providers: [WeatherService]
 })
 
 export class LeftContainerComponent {

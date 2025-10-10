@@ -18,7 +18,7 @@
             <div class="card" *ngFor="let card of weatherService.weekData">
                 <div class="card-day">{{ card.day }}</div>
                 <div class="card-temp-img"><img src="{{ card.summeryImage }}" alt=""></div>
-                <div class="card-temp-value"> <span class="temp-max">{{ this.weatherService.celsius == true ? card.tempMax : this.weatherService.celsiusToFarenheit(card.tempMax) }}°</span> <span class="temp-min">{{ this.weatherService.celsius == true ? card.tempMin : this.weatherService.celsiusToFarenheit(card.tempMin) }}°</span> </div>
+                <div class="card-temp-value"> <span class="temp-max">{{ this.weatherService.celsius == true ? card.tempMax : this.weatherService.celsiusToFarenheit(card.tempMax) }}° </span> <span class="temp-min">{{ this.weatherService.celsius == true ? card.tempMin : this.weatherService.celsiusToFarenheit(card.tempMin) }}°</span> </div>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                 <div class="right-container-todays-highlight-card">
                     <div class="right-container-todays-highlight-card-title">Wind Status</div>
                     <div class="wind-status-value">{{ this.weatherService.todayHightlights.windStatus }} <span class="unit">km/h</span></div>
-                    <div class="wind-status-logo"><img src="https://cdn-icons-png.flaticon.com/128/9829/9829471.png" alt=""></div>
+                    <div class="wind-status-logo"><img src="https://cdn-icons-png.flaticon.com/128/9829/9829471.png" alt=""> </div>
                 </div>
 
                 <div class="right-container-todays-highlight-card">

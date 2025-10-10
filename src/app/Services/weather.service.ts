@@ -35,10 +35,9 @@ export class WeatherService {
 
   todayData?: TodayData[] = [];
   weekData?: WeekData[] = [];
-  todayHightlights?: TodayHightlight = new TodayHightlight();
+  todayHightlights?: TodayHightlight;
 
   constructor(private httpClient: HttpClient) {
-    this.temperatureData = new TemperatureData();
     this.getData();
   }  
 
@@ -114,11 +113,11 @@ export class WeatherService {
   }
 
   celsiusToFarenheit(celsius: number) {
-    return (celsius * 1.8) + 32;
+    return ((celsius * 1.8) + 32).toFixed(2);
   }
 
   farenheitToCelsius(farenheit: number) {
-    return(farenheit - 32) * 0.555;
+    return ((farenheit - 32) * 0.555).toFixed(2);
   }
 
   getLocationDetails(cityName: string, language:string):Observable<LocationDetails>{
@@ -148,6 +147,11 @@ export class WeatherService {
   }
 
   getData() {
+    this.todayData = [];
+    this.weekData = [];
+    this.temperatureData = new TemperatureData();
+    this.todayHightlights = new TodayHightlight();
+
     var latitude = 0;
     var longitude = 0;
     this.getLocationDetails(this.cityName, this.language).subscribe({
